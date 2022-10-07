@@ -201,6 +201,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.8-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.13.8-x86_64-linux)
+      racc (~> 1.4)
     pagy (5.10.1)
       activesupport
     pg (1.4.3)
@@ -259,8 +261,11 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sentry-raven (3.1.2)
-      faraday (>= 1.0)
+    sentry-rails (5.4.2)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.4.2)
+    sentry-ruby (5.4.2)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     sidekiq (6.5.7)
       connection_pool (>= 2.2.5)
       rack (~> 2.0)
@@ -320,6 +325,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap
@@ -346,7 +352,8 @@ DEPENDENCIES
   rails (~> 7.0.3, >= 7.0.3.1)
   redis (~> 4.0)
   selenium-webdriver
-  sentry-raven
+  sentry-rails
+  sentry-ruby
   sidekiq
   sidekiq-cron
   skylight
