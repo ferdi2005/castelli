@@ -1,9 +1,15 @@
 // Sassy
 
+@import 'bulma/bulma.sass';
+
 @import "leaflet/dist/leaflet.css";
 @import "leaflet.markercluster/dist/MarkerCluster.css";
 @import "leaflet.markercluster/dist/MarkerCluster.Default.css";
-@import 'bulma/bulma.sass';
+
+@font-face {
+  font-family: 'creativecommons';
+  src: url("CCSymbols.woff2") format("woff2");
+}
 
 .is-centered > div {
     margin: auto;
