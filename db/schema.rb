@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_07_140436) do
     t.string "town"
     t.string "address"
     t.string "wikipedia"
+    t.string "commons"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

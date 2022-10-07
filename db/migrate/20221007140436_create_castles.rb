@@ -9,8 +9,10 @@ class CreateCastles < ActiveRecord::Migration[7.0]
       t.string :image
       t.string :region
       t.string :town
+      t.integer :townqid
       t.string :address
       t.string :wikipedia
+      t.string :commons
 
       t.timestamps
     end
