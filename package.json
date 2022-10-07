@@ -4,8 +4,5 @@
     "leaflet": "^1.9.2",
     "leaflet.markercluster": "^1.5.3",
     "sass": "^1.55.0"
-  },
-  "scripts": {
-    "build:css": "sass ./app/assets/stylesheets/application.bulma.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   }
 }

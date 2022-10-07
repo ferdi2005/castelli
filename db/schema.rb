@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_07_140436) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_07_150230) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,11 +23,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_07_140436) do
     t.string "image"
     t.string "region"
     t.string "town"
+    t.integer "townqid"
     t.string "address"
     t.string "wikipedia"
     t.string "commons"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["qid"], name: "index_castles_on_qid", unique: true
   end
 
 end
