@@ -13,10 +13,15 @@
     var latlng = L.latLng(42.135, 12.678);
 
     var map = L.map('mymap', {center: latlng, zoom: 7, layers: [tiles]});
+    
+    <% @regioni.each do |reg| %>
+        var <%= snake_case(reg) %> = L.markerClusterGroup();
+    <% end %>
 
-    var markers = L.markerClusterGroup();
     <%= render partial: "castle", collection: @castles, cached: true %>
     
-    map.addLayer(markers);
+    <% @regioni.each do |reg| %>
+        map.addLayer(<%= snake_case(reg) %>);
+    <% end %>
 
 </script>
