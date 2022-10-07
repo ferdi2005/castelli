@@ -1,44 +1,45 @@
-<% provide(:title, @castle.itemlabel.capitalize) %>
+<% provide(:title, @castle.label.capitalize) %>
 
-<div class="level">
-    <% unless @castle.image.nil? %>
-        <div class="level-item">
-            <%= image_tag @castle.image, width: "300px" %>
+<div class="section">
+<%= link_to "Home", root_path, class: "button is-small is-info under-button" %>
+    <div class="level">
+        <% unless @castle.image.nil? %>
+            <div class="level-item">
+                <%= image_tag "https://commons.wikimedia.org/w/thumb.php?f=#{@castle.image}&w=300", width: "300px" %>
+            </div>
+        <% end %>
+
+        <div class="level-item has-text-centered">
+            <div>
+                <h1 class="title is-2 is-primary"><%= @castle.label.capitalize %></h1>
+                <h2 class="subtitle" style="margin:5px"><%= @castle.description %></h2>
+            </div>
         </div>
-    <% end %>
-
-    <div class="level-item">
-        <h1 class="title is-2 is-primary"><%= @castle.itemlabel.capitalize %></h1>
-        <h2 class="subtitle" ><%= @castle.description %></h2>
     </div>
-<!-- map -->
-<div id="mapid" class="is-centered" style="height: 360px;"></div>
-<script>
-    var mymap = L.map('mapid').setView([<%= @castle.latitude %> , <%= @castle.longitude %>], 18);
+    <!-- map -->
+    <div id="mapid" class="is-centered" style="height: 360px;"></div>
+    <script type="module">
+        import "leaflet";
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | &#127245; <a href="https://wikidata.org/">Wikidata</a>'
-        }).addTo(mymap);
+        var mymap = L.map('mapid').setView([<%= @castle.latitude %> , <%= @castle.longitude %>], 18);
 
-    L.marker([ <%= @castle.latitude %>,<%= @castle.longitude %>]).addTo(mymap)
-        .bindPopup('<%= @castle.itemlabel.capitalize %>')
-        .openPopup();
-</script>
-<!-- end map stuff -->
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | <span style="font-family:creativecommons">&#127245;</span> <a href="https://wikidata.org/">Wikidata</a>'
+            }).addTo(mymap);
 
-<br />
-<b>Indirizzo:</b>
-<a href="https://www.openstreetmap.org/?mlat=<%= @castle.latitude %>&mlon=<%= @castle.longitude %>"><%= return_address(@castle)%></a>
-<hr />
-<br />
-<div class="buttons is-vertical">
-    <%= link_to 'Categoria su Commons', "https://commons.wikimedia.org/wiki/Category:#{@castle.commons}", class: 'button is-primary is-light' unless @castle.commons.nil?%>
-    <br/>
-    <br/>
-    <%= link_to 'Item su Wikidata', "https://wikidata.org/wiki/#{@castle.item}", class: 'button is-primary is-light' %>
-    <br/>
-    <br/>
-    <br/>
-    <%= link_to 'Voce su Wikipedia', @castle.wikipedia, class: 'button is-primary is-light' unless @castle.wikipedia.nil? %>
+        L.marker([ <%= @castle.latitude %>,<%= @castle.longitude %>]).addTo(mymap)
+            .bindPopup('<%= @castle.label.capitalize %>')
+            .openPopup();
+    </script>
+    <!-- end map stuff -->
+    <div style="margin:10px;">
+        <b>Indirizzo:</b>
+        <a href="https://www.openstreetmap.org/?mlat=<%= @castle.latitude %>&mlon=<%= @castle.longitude %>"><%= return_address(@castle)%></a>
+        <div class="buttons is-vertical" style="margin:10px;">
+            <%= link_to 'Categoria su Commons', "https://commons.wikimedia.org/wiki/Category:#{@castle.commons}", class: 'under-button button is-primary is-light' unless @castle.commons.nil?%>
+            <%= link_to 'Item su Wikidata', "https://wikidata.org/wiki/#{@castle.qid}", class: 'under-button button is-primary is-light' %>
+            <%= link_to 'Voce su Wikipedia', @castle.wikipedia, class: 'under-button button is-primary is-light' unless @castle.wikipedia.nil? %>
+        </div>
+    </div>
 </div>
