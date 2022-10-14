@@ -5,6 +5,7 @@
 <script type="module">
     import "leaflet";
     import "leaflet.markercluster";
+    import "leaflet.locatecontrol";
 
     var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | <span style="font-family:creativecommons">&#127245;</span> <a href="https://wikidata.org/">Wikidata</a>'
@@ -13,7 +14,9 @@
     var latlng = L.latLng(42.135, 12.678);
 
     var map = L.map('mymap', {center: latlng, zoom: 7, layers: [tiles]});
-    
+
+    L.control.locate({initialZoomLevel: 13}).addTo(map);
+
     <% @regioni.each do |reg| %>
         var <%= snake_case(reg) %> = L.markerClusterGroup();
     <% end %>

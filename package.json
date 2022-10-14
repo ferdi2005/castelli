@@ -2,6 +2,7 @@
   "dependencies": {
     "bulma": "^0.9.4",
     "leaflet": "^1.9.2",
+    "leaflet.locatecontrol": "^0.76.1",
     "leaflet.markercluster": "^1.5.3",
     "sass": "^1.55.0"
   }
